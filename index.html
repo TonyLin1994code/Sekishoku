@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赤紅酵母 Sekishoku Koubo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;700;900&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Noto+Serif+TC:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4C2C2;
+  --pink2:#E8A0A0;
+  --pink3:#D4706F;
+  --crimson:#C0392B;
+  --blush:#FDE8E8;
+  --white:#FFFFFF;
+  --ink:#1A0A0A;
+  --inkm:#3D1515;
+  --inkf:#9A6060;
+  --cream:#FFF8F8;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+
+/* ── TICKER ── */
+.ticker{overflow:hidden;white-space:nowrap;border-bottom:2px solid var(--ink);padding:.55rem 0;background:var(--ink);}
+.ticker-track{display:inline-flex;animation:tick 20s linear infinite;}
+.ticker-track span{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.25em;padding:0 1.2rem;color:var(--pink);}
+.ticker-track span.ac{color:var(--white);font-size:.7rem;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── HERO ── */
+#hero{
+  position:relative;width:100%;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(145deg, var(--blush) 0%, var(--white) 45%, var(--pink) 100%);
+}
+
+/* Geometric background lines */
+#hero::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(244,194,194,.15) 60px, rgba(244,194,194,.15) 61px),
+    repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(192,57,43,.05) 80px, rgba(192,57,43,.05) 81px);
+  pointer-events:none;
+}
+
+/* Energy pulse rings */
+.pulse-ring{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-58%);
+  border-radius:50%;border:1.5px solid rgba(212,112,111,.3);
+  pointer-events:none;z-index:1;
+  animation:pulsate 3s ease-out infinite;
+}
+.pulse-ring:nth-child(1){width:clamp(200px,50vw,320px);height:clamp(200px,50vw,320px);}
+.pulse-ring:nth-child(2){width:clamp(260px,65vw,420px);height:clamp(260px,65vw,420px);animation-delay:.8s;border-color:rgba(212,112,111,.18);}
+.pulse-ring:nth-child(3){width:clamp(320px,80vw,520px);height:clamp(320px,80vw,520px);animation-delay:1.6s;border-color:rgba(212,112,111,.08);}
+@keyframes pulsate{
+  0%{opacity:.8;transform:translate(-50%,-58%) scale(.95);}
+  100%{opacity:0;transform:translate(-50%,-58%) scale(1.08);}
+}
+
+/* Liquid blob */
+.liquid-blob{
+  position:absolute;top:55%;left:50%;
+  transform:translate(-50%,-50%);
+  width:clamp(180px,48vw,300px);height:clamp(180px,48vw,300px);
+  background:radial-gradient(circle,rgba(244,194,194,.45) 0%,rgba(212,112,111,.2) 50%,transparent 75%);
+  border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;
+  animation:morphblob 8s ease-in-out infinite;
+  z-index:1;pointer-events:none;
+}
+@keyframes morphblob{
+  0%,100%{border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;}
+  25%{border-radius:40% 60% 30% 70% / 60% 40% 60% 40%;}
+  50%{border-radius:70% 30% 50% 50% / 30% 70% 30% 70%;}
+  75%{border-radius:30% 70% 40% 60% / 70% 30% 70% 30%;}
+}
+
+/* Bottle */
+.hero-bottle-full{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;padding:5rem 0 8rem;
+}
+.hero-bottle-full img{
+  width:clamp(200px,50vw,310px);height:auto;object-fit:contain;
+  filter:drop-shadow(0 20px 50px rgba(192,57,43,.25)) drop-shadow(0 0 30px rgba(244,194,194,.4));
+  animation:bob 6s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0)rotate(-.5deg);}50%{transform:translateY(-14px)rotate(.5deg);}}
+
+/* Hero name block */
+.hero-name-block{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:3rem 1.6rem 2.2rem;
+  background:linear-gradient(transparent,rgba(255,248,248,.97) 55%);
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.hname-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,20vw,9rem);
+  color:var(--ink);letter-spacing:.06em;line-height:.88;
+}
+.hname-red{color:var(--crimson);}
+.hname-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem;
+  padding-top:.5rem;border-top:2px solid var(--ink);margin-top:.2rem;
+}
+.hname-jp{font-family:'Noto Sans TC',sans-serif;font-weight:100;font-size:clamp(.72rem,2.8vw,.9rem);letter-spacing:.28em;color:var(--inkm);}
+.hname-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.85rem,3.2vw,1.05rem);letter-spacing:.2em;color:var(--inkf);}
+.hname-sep{color:var(--crimson);font-weight:900;font-size:.8rem;}
+.hero-slogan{
+  font-family:'Noto Serif TC',serif;font-weight:200;
+  font-size:clamp(.7rem,2.6vw,.85rem);letter-spacing:.14em;line-height:2.2;
+  color:var(--inkf);margin-top:.2rem;
+}
+.hero-scroll-hint{
+  display:flex;align-items:center;gap:.5rem;margin-top:.6rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.72rem;letter-spacing:.2em;color:rgba(26,10,10,.3);
+}
+.scroll-dot{width:20px;height:1.5px;background:var(--crimson);opacity:.4;}
+
+/* ── SECTIONS ── */
+.sec{padding:4rem 1.4rem;}
+.sec-light{background:var(--cream);}
+.sec-dark{background:var(--ink);}
+.sec-pink{background:var(--pink);}
+.sec+.sec{border-top:2px solid var(--ink);}
+.eyebrow{display:flex;align-items:center;gap:.6rem;margin-bottom:2rem;}
+.eyebrow h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.1rem,5vw,1.6rem);letter-spacing:.22em;color:var(--ink);}
+.eyebrow-dark h2{color:var(--pink);}
+.eyebrow span{color:var(--crimson);font-weight:900;font-size:1rem;}
+.eyebrow-dark span{color:var(--pink2);}
+
+/* ── ABOUT ── */
+#about{background:var(--white);}
+.about-body p{
+  font-family:'Noto Serif TC',serif;font-weight:200;
+  font-size:clamp(.82rem,3vw,.95rem);line-height:3;letter-spacing:.06em;color:var(--inkm);
+}
+.about-body p strong{color:var(--crimson);font-weight:400;}
+.photo-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.8rem 0;}
+.photo-box{border-radius:2px;overflow:hidden;aspect-ratio:3/4;position:relative;background:var(--pink);}
+.photo-box img{width:100%;height:100%;object-fit:cover;filter:saturate(.3)contrast(1.1);transition:filter .4s;}
+.photo-box:hover img{filter:saturate(.7)contrast(1.05);}
+.photo-box::after{content:'';position:absolute;inset:0;background:rgba(192,57,43,.08);mix-blend-mode:multiply;pointer-events:none;}
+.food-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--blush);}
+
+/* ── SPECS ── */
+#specs{background:var(--ink);}
+#specs .eyebrow h2{color:var(--pink);}
+#specs .eyebrow span{color:var(--pink2);}
+.pulse-chart{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-bottom:2rem;}
+.pulse-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.pulse-bars{display:flex;align-items:flex-end;gap:3px;height:48px;}
+.pbar{width:6px;background:var(--pink3);border-radius:2px;animation:pbar var(--d,.6s) ease-in-out infinite alternate;}
+@keyframes pbar{0%{transform:scaleY(.3);opacity:.4;}100%{transform:scaleY(1);opacity:1;}}
+.pulse-val{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3.5rem);
+  color:var(--pink);letter-spacing:.04em;
+  text-shadow:0 0 20px rgba(244,194,194,.3);
+}
+.pulse-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.75rem;letter-spacing:.2em;color:var(--inkf);}
+.spec-table{width:100%;border-collapse:collapse;}
+.spec-table tr{border-bottom:1px solid rgba(244,194,194,.1);}
+.spec-table td{padding:.85rem 0;vertical-align:top;}
+.spec-table td:first-child{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.72rem;letter-spacing:.18em;color:var(--pink2);width:34%;padding-top:1rem;opacity:.7;}
+.spec-table td:last-child{font-family:'Noto Serif TC',serif;font-size:.88rem;font-weight:200;line-height:1.7;color:rgba(253,232,232,.85);}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.8rem;}
+.tag{border:1.5px solid var(--pink3);color:var(--pink);font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.1em;padding:.3rem .8rem;transition:background .2s,color .2s;cursor:default;}
+.tag:hover{background:var(--pink3);color:var(--white);}
+
+/* ── SENSORY ── */
+#sensory{background:var(--cream);}
+.music-label{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:.25em;color:var(--inkm);margin-bottom:.7rem;}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.4rem;}
+.food-box{border-radius:2px;overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--blush);}
+.food-box img{width:100%;height:100%;object-fit:cover;filter:saturate(.25)contrast(1.1);transition:filter .5s,transform .5s;}
+.food-box:hover img{filter:saturate(.65);transform:scale(1.04);}
+.food-box::after{content:'';position:absolute;inset:0;background:rgba(192,57,43,.06);mix-blend-mode:multiply;pointer-events:none;}
+.food-lbl{position:absolute;bottom:0;left:0;right:0;padding:.5rem .7rem;background:linear-gradient(transparent,rgba(26,10,10,.8));font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.14em;color:rgba(253,232,232,.9);}
+
+/* ── INSIGHT ── */
+#insight{
+  background:var(--white);padding:5rem 1.4rem;
+  position:relative;overflow:hidden;
+}
+#insight::before{
+  content:'赤';
+  position:absolute;right:-0.1em;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(12rem,45vw,22rem);
+  color:rgba(244,194,194,.12);line-height:1;pointer-events:none;z-index:0;
+  letter-spacing:-.05em;
+}
+#insight .eyebrow{position:relative;z-index:1;}
+.i-q{
+  position:relative;z-index:1;
+  font-family:'Noto Serif TC',serif;font-weight:200;
+  font-size:clamp(.72rem,2.8vw,.88rem);line-height:3.2;letter-spacing:.08em;
+  color:var(--inkm);
+}
+.i-q em{font-style:normal;color:var(--crimson);font-weight:400;}
+
+/* ── FOOTER ── */
+#footer{background:var(--ink);padding:4rem 1.4rem 3.5rem;border-top:3px solid var(--crimson);}
+.f-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,14vw,7.5rem);line-height:.88;letter-spacing:.06em;
+  color:var(--white);margin-bottom:.15em;
+}
+.f-big .ac{color:var(--pink3);}
+.f-venues{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;border-top:1px solid rgba(244,194,194,.15);border-bottom:1px solid rgba(244,194,194,.15);padding:1.4rem 0;margin:1.8rem 0;}
+.f-venue-item{display:flex;flex-direction:column;gap:.3rem;padding:.6rem;border-right:1px solid rgba(244,194,194,.08);}
+.f-venue-item:last-child{border-right:none;}
+.f-venue-date{font-family:'Bebas Neue',sans-serif;font-size:clamp(1rem,3.8vw,1.5rem);letter-spacing:.08em;color:var(--pink);}
+.f-venue-name{font-family:'Noto Sans TC',sans-serif;font-weight:100;font-size:clamp(.62rem,2.2vw,.78rem);letter-spacing:.12em;color:rgba(253,232,232,.55);line-height:1.6;}
+.f-btns{display:flex;flex-direction:column;gap:.7rem;max-width:360px;}
+.btn-fill{display:block;text-align:center;padding:.95rem 1.4rem;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.18em;text-decoration:none;border:none;cursor:pointer;transition:background .2s,color .2s;}
+.btn-fill.red{background:var(--crimson);color:var(--white);}
+.btn-fill.red:hover{background:var(--pink3);}
+.btn-fill.ghost{background:transparent;color:var(--pink);border:1.5px solid rgba(244,194,194,.35);}
+.btn-fill.ghost:hover{background:rgba(244,194,194,.1);}
+.btn-fill.outline{background:transparent;color:var(--pink2);border:1.5px solid rgba(212,112,111,.4);}
+.btn-fill.outline:hover{background:rgba(212,112,111,.1);}
+.f-fine{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(244,194,194,.08);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem;align-items:flex-end;}
+.f-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.72rem;letter-spacing:.22em;color:rgba(244,194,194,.4);}
+.f-warn{width:100%;font-family:'Noto Sans TC',sans-serif;font-weight:100;font-size:.55rem;letter-spacing:.1em;color:rgba(253,232,232,.2);margin-top:.2rem;}
+.f-nav{display:flex;gap:1.2rem;list-style:none;}
+.f-nav a{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.65rem;letter-spacing:.18em;color:rgba(244,194,194,.4);text-decoration:none;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>12–15% ABV</span><span class="ac">✦</span>
+    <span>佐賀縣天吹酒造</span><span class="ac">✦</span>
+    <span>赤紅酵母</span><span class="ac">✦</span>
+    <span>SEKISHOKU KOUBO</span><span class="ac">✦</span>
+    <span>天然紅寶石色澤</span><span class="ac">✦</span>
+    <span>發酵革命</span><span class="ac">✦</span>
+    <span>12–15% ABV</span><span class="ac">✦</span>
+    <span>佐賀縣天吹酒造</span><span class="ac">✦</span>
+    <span>赤紅酵母</span><span class="ac">✦</span>
+    <span>SEKISHOKU KOUBO</span><span class="ac">✦</span>
+    <span>天然紅寶石色澤</span><span class="ac">✦</span>
+    <span>發酵革命</span><span class="ac">✦</span>
+  </div>
+</div>
+
+<!-- §1 HERO -->
+<section id="hero">
+  <div class="pulse-ring"></div>
+  <div class="pulse-ring"></div>
+  <div class="pulse-ring"></div>
+  <div class="liquid-blob"></div>
+
+  <div class="hero-bottle-full">
+    <img
+      src="https://raw.githubusercontent.com/TonyLin1994code/Sekishoku/03ba7509c080afc4ee403bec176dd015a828c738/Sekishoku-bottle.png"
+      alt="赤紅酵母 Sekishoku Koubo"
+    >
+  </div>
+
+  <div class="hero-name-block">
+    <div class="hname-big"><span class="hname-red">赤紅</span>酵母</div>
+    <div class="hname-row">
+      <span class="hname-jp">せきしょくこうぼ</span>
+      <span class="hname-sep">✦</span>
+      <span class="hname-en">Sekishoku Koubo</span>
+    </div>
+    <p class="hero-slogan">真正的色彩，來自於由內而外的發酵革命。</p>
+    <div class="hero-scroll-hint">
+      <span class="scroll-dot"></span>
+      <span>Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- §2 ABOUT -->
+<section id="about" class="sec">
+  <div class="eyebrow">
+    <h2>關於赤紅酵母</h2><span>✦</span>
+  </div>
+  <div class="about-body">
+    <p>推開酒造厚重的大門，你可能會驚訝於杯中這抹<strong>叛逆的粉紅</strong>。它並非添加了色素，而是生命發酵後的<strong>自然奇蹟</strong>。來自佐賀的職人，用一種極其嚴苛的溫控技術，喚醒了這份赤色力量。它打破了你對清酒「色澤透明」的刻板印象，充滿<strong>果敢與創新</strong>的氣息，這就是發酵的生命律動。</p>
+  </div>
+  <div class="photo-row">
+    <div class="photo-box">
+      <img
+        src="https://raw.githubusercontent.com/TonyLin1994code/Sekishoku/03ba7509c080afc4ee403bec176dd015a828c738/japan-sake-1.jpg"
+        alt="佐賀酒造風景"
+        loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=\'food-placeholder\'>🏺</div>'"
+      >
+    </div>
+    <div class="photo-box">
+      <img
+        src="https://raw.githubusercontent.com/TonyLin1994code/Sekishoku/03ba7509c080afc4ee403bec176dd015a828c738/japan-sake-2.jpg"
+        alt="釀造現場"
+        loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=\'food-placeholder\'>🌸</div>'"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- §3 SPECS -->
+<section id="specs" class="sec">
+  <div class="eyebrow eyebrow-dark">
+    <h2>職人與工法</h2><span>✦</span>
+  </div>
+
+  <!-- Pulse chart -->
+  <div class="pulse-chart">
+    <div class="pulse-bar-wrap">
+      <div class="pulse-bars">
+        <div class="pbar" style="height:60%;--d:.5s"></div>
+        <div class="pbar" style="height:100%;--d:.7s"></div>
+        <div class="pbar" style="height:75%;--d:.4s"></div>
+        <div class="pbar" style="height:90%;--d:.6s"></div>
+        <div class="pbar" style="height:55%;--d:.8s"></div>
+        <div class="pbar" style="height:100%;--d:.5s"></div>
+        <div class="pbar" style="height:70%;--d:.65s"></div>
+        <div class="pbar" style="height:85%;--d:.45s"></div>
+      </div>
+      <div class="pulse-val">12–15%</div>
+      <div class="pulse-sub">Alcohol by Volume</div>
+    </div>
+  </div>
+
+  <table class="spec-table">
+    <tr><td>酒名</td><td>赤紅酵母 <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(212,112,111,.6);font-size:.8rem;">Sekishoku Koubo</em></td></tr>
+    <tr><td>產地</td><td>日本佐賀縣</td></tr>
+    <tr><td>酒造</td><td>天吹酒造</td></tr>
+    <tr><td>釀造工法</td><td>脆弱的「赤紅酵母」，職人 24 小時精準控溫，維持天然紅寶石色澤</td></tr>
+    <tr><td>風味</td><td>酸甜飽滿，草莓或小紅莓漿果香氣，口感圓潤驚喜</td></tr>
+  </table>
+
+  <div class="tags">
+    <span class="tag">酸甜飽滿</span>
+    <span class="tag">草莓香氣</span>
+    <span class="tag">小紅莓</span>
+    <span class="tag">口感圓潤</span>
+    <span class="tag">天然紅寶石</span>
+  </div>
+</section>
+
+<!-- §4 SENSORY -->
+<section id="sensory" class="sec sec-light">
+  <div class="eyebrow">
+    <h2>聽覺與味覺</h2><span>✦</span>
+  </div>
+
+  <p class="music-label">🎵 感受血液中律動的粉色能量</p>
+  <iframe width="100%" height="215" src="https://www.youtube.com/embed/TxcElyDnnZE?si=Ibm0ujeKamrYkb6V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:4px;display:block;"></iframe>
+
+  <div class="food-grid">
+    <div class="food-box">
+      <img
+        src="https://raw.githubusercontent.com/TonyLin1994code/Sekishoku/03ba7509c080afc4ee403bec176dd015a828c738/food-bbq.jpg"
+        alt="烤肉"
+        loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=\'food-placeholder\'>🥩</div><p class=\'food-lbl\'>炭烤料理</p>'"
+      >
+      <p class="food-lbl">炭烤料理</p>
+    </div>
+    <div class="food-box">
+      <img
+        src="https://raw.githubusercontent.com/TonyLin1994code/Sekishoku/03ba7509c080afc4ee403bec176dd015a828c738/food-dessert.jpg"
+        alt="莓果甜點"
+        loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=\'food-placeholder\'>🍓</div><p class=\'food-lbl\'>莓果甜點</p>'"
+      >
+      <p class="food-lbl">莓果甜點</p>
+    </div>
+  </div>
+</section>
+
+<!-- §5 INSIGHT -->
+<section id="insight" class="sec">
+  <div class="eyebrow">
+    <h2>品牌思考題</h2><span>✦</span>
+  </div>
+  <p class="i-q">
+    不依賴人工修飾，<br>
+    而是靠<em>內在特質</em>產生改變。<br><br>
+    你的品牌是否也有一個<br>
+    鮮為人知、卻極具生命力的<em>「發酵核心」</em>，<br><br>
+    足以顛覆市場的<em>既定印象</em>？
+  </p>
+</section>
+
+<!-- §6 FOOTER -->
+<section id="footer">
+  <div class="f-big">微醺<br>連結<span class="ac">。</span></div>
+
+  <div class="f-venues">
+    <div class="f-venue-item">
+      <span class="f-venue-date">3 / 30</span>
+      <span class="f-venue-name">MuMu 咖啡</span>
+    </div>
+    <div class="f-venue-item">
+      <span class="f-venue-date">4 / 07</span>
+      <span class="f-venue-name">坐客咖啡</span>
+    </div>
+    <div class="f-venue-item">
+      <span class="f-venue-date">4 / 11</span>
+      <span class="f-venue-name">山上山下<br>埔里店</span>
+    </div>
+  </div>
+
+  <div class="f-btns">
+    <a href="https://forms.gle/fD3LVGXcFnMQswRJ6" target="_blank" class="btn-fill red">📅 預約下一場微醺</a>
+    <a href="https://lin.ee/UgaIhG7" target="_blank" class="btn-fill ghost">🍶 立即聯繫蘭爵私選下單</a>
+    <a href="https://lin.ee/19k6X29" target="_blank" class="btn-fill outline">💳 LINKet 品牌數位化服務</a>
+  </div>
+
+  <div class="f-fine">
+    <span class="f-brand">赤紅酵母 SEKISHOKU KOUBO</span>
+    <ul class="f-nav">
+      <li><a href="#about">關於</a></li>
+      <li><a href="#specs">工法</a></li>
+      <li><a href="#sensory">搭配</a></li>
+    </ul>
+    <p class="f-warn">佐賀縣天吹酒造 · 12–15% alc/vol · 飲酒過量有害健康 · 禁止酒駕 · 未滿18歲禁止飲酒</p>
+  </div>
+</section>
+
+</body>
+</html>
