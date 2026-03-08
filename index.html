@@ -218,7 +218,14 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
 .f-venue-item{display:flex;flex-direction:column;gap:.3rem;padding:.6rem;border-right:1px solid rgba(244,194,194,.08);}
 .f-venue-item:last-child{border-right:none;}
 .f-venue-date{font-family:'Bebas Neue',sans-serif;font-size:clamp(1rem,3.8vw,1.5rem);letter-spacing:.08em;color:var(--pink);}
-.f-venue-name{font-family:'Noto Sans TC',sans-serif;font-weight:100;font-size:clamp(.62rem,2.2vw,.78rem);letter-spacing:.12em;color:rgba(253,232,232,.55);line-height:1.6;}
+.f-venue-name{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(.72rem,2.6vw,.92rem);letter-spacing:.08em;color:rgba(253,232,232,.85);line-height:1.6;}
+@media(max-width:600px){
+  .f-venues{grid-template-columns:1fr;gap:0;}
+  .f-venue-item{flex-direction:row;align-items:center;justify-content:space-between;border-right:none;border-bottom:1px solid rgba(244,194,194,.08);padding:.9rem .4rem;}
+  .f-venue-item:last-child{border-bottom:none;}
+  .f-venue-date{font-size:1.1rem;min-width:3.2rem;}
+  .f-venue-name{font-size:.88rem;flex:1;padding:0 .6rem;}
+}
 .f-btns{display:flex;flex-direction:column;gap:.7rem;max-width:360px;}
 .btn-fill{display:block;text-align:center;padding:.95rem 1.4rem;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.18em;text-decoration:none;border:none;cursor:pointer;transition:background .2s,color .2s;}
 .btn-fill.red{background:var(--crimson);color:var(--white);}
@@ -232,6 +239,24 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
 .f-warn{width:100%;font-family:'Noto Sans TC',sans-serif;font-weight:100;font-size:.55rem;letter-spacing:.1em;color:rgba(253,232,232,.2);margin-top:.2rem;}
 .f-nav{display:flex;gap:1.2rem;list-style:none;}
 .f-nav a{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:.65rem;letter-spacing:.18em;color:rgba(244,194,194,.4);text-decoration:none;text-transform:uppercase;}
+
+/* VENUE FOLLOW LINK */
+.venue-follow{display:inline-block;font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:.65rem;letter-spacing:.16em;color:var(--ink);background:var(--crimson);text-decoration:none;padding:.3rem .75rem;border-radius:2px;margin-top:.3rem;transition:background .2s,transform .15s;}
+.venue-follow:hover{background:var(--pink3);transform:translateY(-1px);}
+@media(max-width:600px){.venue-follow{margin-top:0;white-space:nowrap;}}
+
+/* LEGAL BAR */
+.legal-bar{background:#000;color:#fff;text-align:center;padding:1rem 1.4rem;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:1rem;letter-spacing:.12em;line-height:2.2;}
+
+/* PARTNER BAR */
+.partner-bar{background:#000;display:flex;align-items:center;justify-content:center;gap:clamp(1.2rem,4vw,3rem);padding:1.6rem 1.4rem;border-top:1px solid rgba(255,255,255,.08);}
+.partner-logo{display:flex;align-items:center;opacity:.75;transition:opacity .2s,transform .2s;flex-shrink:0;}
+.partner-logo:hover{opacity:1;transform:scale(1.06);}
+.partner-logo img{height:clamp(22px,4vw,36px);width:auto;filter:brightness(0) invert(1);}
+@media(max-width:480px){
+  .partner-bar{gap:clamp(.8rem,3vw,1.6rem);padding:1.2rem .8rem;flex-wrap:wrap;}
+  .partner-logo img{height:20px;}
+}
 </style>
 </head>
 <body>
@@ -239,17 +264,17 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>12–15% ABV</span><span class="ac">✦</span>
-    <span>佐賀縣天吹酒造</span><span class="ac">✦</span>
-    <span>赤紅酵母</span><span class="ac">✦</span>
-    <span>SEKISHOKU KOUBO</span><span class="ac">✦</span>
-    <span>天然紅寶石色澤</span><span class="ac">✦</span>
+    <span>11% ABV</span><span class="ac">✦</span>
+    <span>山形縣富士酒造</span><span class="ac">✦</span>
+    <span>赤色酵母</span><span class="ac">✦</span>
+    <span>CRIMSON GLORY</span><span class="ac">✦</span>
+    <span>天然粉紅色澤</span><span class="ac">✦</span>
     <span>發酵革命</span><span class="ac">✦</span>
-    <span>12–15% ABV</span><span class="ac">✦</span>
-    <span>佐賀縣天吹酒造</span><span class="ac">✦</span>
-    <span>赤紅酵母</span><span class="ac">✦</span>
-    <span>SEKISHOKU KOUBO</span><span class="ac">✦</span>
-    <span>天然紅寶石色澤</span><span class="ac">✦</span>
+    <span>11% ABV</span><span class="ac">✦</span>
+    <span>山形縣富士酒造</span><span class="ac">✦</span>
+    <span>赤色酵母</span><span class="ac">✦</span>
+    <span>CRIMSON GLORY</span><span class="ac">✦</span>
+    <span>天然粉紅色澤</span><span class="ac">✦</span>
     <span>發酵革命</span><span class="ac">✦</span>
   </div>
 </div>
@@ -271,9 +296,9 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
   <div class="hero-name-block">
     <div class="hname-big"><span class="hname-red">赤紅</span>酵母</div>
     <div class="hname-row">
-      <span class="hname-jp">せきしょくこうぼ</span>
+      <span class="hname-jp">Crimson Glory</span>
       <span class="hname-sep">✦</span>
-      <span class="hname-en">Sekishoku Koubo</span>
+      <span class="hname-en">純米大吟釀 無濾過原酒</span>
     </div>
     <p class="hero-slogan">真正的色彩，來自於由內而外的發酵革命。</p>
     <div class="hero-scroll-hint">
@@ -289,7 +314,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
     <h2>關於赤紅酵母</h2><span>✦</span>
   </div>
   <div class="about-body">
-    <p>推開酒造厚重的大門，你可能會驚訝於杯中這抹<strong>叛逆的粉紅</strong>。它並非添加了色素，而是生命發酵後的<strong>自然奇蹟</strong>。來自佐賀的職人，用一種極其嚴苛的溫控技術，喚醒了這份赤色力量。它打破了你對清酒「色澤透明」的刻板印象，充滿<strong>果敢與創新</strong>的氣息，這就是發酵的生命律動。</p>
+    <p>推開酒造厚重的大門，你可能會驚訝於杯中這抹<strong>叛逆的粉紅</strong>。它並非添加了色素，而是生命發酵後的<strong>自然奇蹟</strong>。來自<strong>山形縣</strong>的富士酒造，首次以極其罕見的「赤色酵母」挑戰釀造，喚醒了這份粉色力量。它打破了你對清酒「色澤透明」的刻板印象，如草莓般的濃郁甜香與多汁口感，充滿<strong>果敢與創新</strong>的節慶氣息——這就是 <em>Crimson Glory</em>。</p>
   </div>
   <div class="photo-row">
     <div class="photo-box">
@@ -311,48 +336,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
   </div>
 </section>
 
-<!-- §3 SPECS -->
-<section id="specs" class="sec">
-  <div class="eyebrow eyebrow-dark">
-    <h2>職人與工法</h2><span>✦</span>
-  </div>
-
-  <!-- Pulse chart -->
-  <div class="pulse-chart">
-    <div class="pulse-bar-wrap">
-      <div class="pulse-bars">
-        <div class="pbar" style="height:60%;--d:.5s"></div>
-        <div class="pbar" style="height:100%;--d:.7s"></div>
-        <div class="pbar" style="height:75%;--d:.4s"></div>
-        <div class="pbar" style="height:90%;--d:.6s"></div>
-        <div class="pbar" style="height:55%;--d:.8s"></div>
-        <div class="pbar" style="height:100%;--d:.5s"></div>
-        <div class="pbar" style="height:70%;--d:.65s"></div>
-        <div class="pbar" style="height:85%;--d:.45s"></div>
-      </div>
-      <div class="pulse-val">12–15%</div>
-      <div class="pulse-sub">Alcohol by Volume</div>
-    </div>
-  </div>
-
-  <table class="spec-table">
-    <tr><td>酒名</td><td>赤紅酵母 <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(212,112,111,.6);font-size:.8rem;">Sekishoku Koubo</em></td></tr>
-    <tr><td>產地</td><td>日本佐賀縣</td></tr>
-    <tr><td>酒造</td><td>天吹酒造</td></tr>
-    <tr><td>釀造工法</td><td>脆弱的「赤紅酵母」，職人 24 小時精準控溫，維持天然紅寶石色澤</td></tr>
-    <tr><td>風味</td><td>酸甜飽滿，草莓或小紅莓漿果香氣，口感圓潤驚喜</td></tr>
-  </table>
-
-  <div class="tags">
-    <span class="tag">酸甜飽滿</span>
-    <span class="tag">草莓香氣</span>
-    <span class="tag">小紅莓</span>
-    <span class="tag">口感圓潤</span>
-    <span class="tag">天然紅寶石</span>
-  </div>
-</section>
-
-<!-- §4 SENSORY -->
+<!-- §3 SENSORY (moved above specs) -->
 <section id="sensory" class="sec sec-light">
   <div class="eyebrow">
     <h2>聽覺與味覺</h2><span>✦</span>
@@ -383,6 +367,51 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
   </div>
 </section>
 
+<!-- §4 SPECS -->
+<section id="specs" class="sec">
+  <div class="eyebrow eyebrow-dark">
+    <h2>職人與工法</h2><span>✦</span>
+  </div>
+
+  <div class="pulse-chart">
+    <div class="pulse-bar-wrap">
+      <div class="pulse-bars">
+        <div class="pbar" style="height:60%;--d:.5s"></div>
+        <div class="pbar" style="height:100%;--d:.7s"></div>
+        <div class="pbar" style="height:75%;--d:.4s"></div>
+        <div class="pbar" style="height:90%;--d:.6s"></div>
+        <div class="pbar" style="height:55%;--d:.8s"></div>
+        <div class="pbar" style="height:100%;--d:.5s"></div>
+        <div class="pbar" style="height:70%;--d:.65s"></div>
+        <div class="pbar" style="height:85%;--d:.45s"></div>
+      </div>
+      <div class="pulse-val">11%</div>
+      <div class="pulse-sub">Alcohol by Volume</div>
+    </div>
+  </div>
+
+  <table class="spec-table">
+    <tr><td>酒名</td><td>榮光富士 Crimson Glory <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(212,112,111,.6);font-size:.8rem;">純米大吟釀 無濾過原酒</em></td></tr>
+    <tr><td>產地</td><td>日本山形縣</td></tr>
+    <tr><td>酒造</td><td>富士酒造（榮光富士）</td></tr>
+    <tr><td>米種</td><td>はえぬき 100%</td></tr>
+    <tr><td>酒精濃度</td><td>11%</td></tr>
+    <tr><td>釀造工法</td><td>首次挑戰「赤色酵母」釀造，不添加任何著色料，天然粉紅色澤完全來自赤色酵母發酵過程，口感輕盈低酒精</td></tr>
+    <tr><td>風味</td><td>如蜂蜜般濃厚甘甜，草莓果香充滿口腔，赤色酵母獨特酸爽感，甘酸平衡令人回味</td></tr>
+    <tr><td>適飲溫度</td><td>10°C – 15°C</td></tr>
+    <tr><td>醒酒時間</td><td>即開即飲</td></tr>
+    <tr><td>餐點搭配</td><td>水果蛋糕、巧克力等各式甜點</td></tr>
+  </table>
+
+  <div class="tags">
+    <span class="tag">甘酸平衡</span>
+    <span class="tag">草莓香氣</span>
+    <span class="tag">蜂蜜甜感</span>
+    <span class="tag">天然粉紅</span>
+    <span class="tag">低酒精輕盈</span>
+  </div>
+</section>
+
 <!-- §5 INSIGHT -->
 <section id="insight" class="sec">
   <div class="eyebrow">
@@ -405,14 +434,17 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
     <div class="f-venue-item">
       <span class="f-venue-date">3 / 30</span>
       <span class="f-venue-name">MuMu 咖啡</span>
+      <a href="https://linket.net/mumucafe" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
     <div class="f-venue-item">
       <span class="f-venue-date">4 / 07</span>
       <span class="f-venue-name">坐客咖啡</span>
+      <a href="https://linket.net/zouke-cafe" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
     <div class="f-venue-item">
       <span class="f-venue-date">4 / 11</span>
       <span class="f-venue-name">山上山下<br>埔里店</span>
+      <a href="https://www.instagram.com/3s3s.tw" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
   </div>
 
@@ -423,15 +455,38 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--i
   </div>
 
   <div class="f-fine">
-    <span class="f-brand">赤紅酵母 SEKISHOKU KOUBO</span>
+    <span class="f-brand">榮光富士 CRIMSON GLORY</span>
     <ul class="f-nav">
       <li><a href="#about">關於</a></li>
       <li><a href="#specs">工法</a></li>
       <li><a href="#sensory">搭配</a></li>
     </ul>
-    <p class="f-warn">佐賀縣天吹酒造 · 12–15% alc/vol · 飲酒過量有害健康 · 禁止酒駕 · 未滿18歲禁止飲酒</p>
   </div>
 </section>
+
+<!-- 聯名品牌 LOGO 列 -->
+<div class="partner-bar">
+  <a href="https://lin.ee/19k6X29" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-lanjue.svg" alt="蘭爵">
+  </a>
+  <a href="https://linket.net/mumucafe" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-mumu.svg" alt="MuMu咖啡">
+  </a>
+  <a href="https://linket.net/zouke-cafe" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-zuoke.svg" alt="坐客咖啡">
+  </a>
+  <a href="https://www.instagram.com/3s3s.tw" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-emo.svg" alt="山上山下">
+  </a>
+  <a href="https://lin.ee/19k6X29" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-linket.svg" alt="LINKet">
+  </a>
+</div>
+
+<!-- 法規警語 -->
+<div class="legal-bar">
+  飲酒勿開車｜未滿十八歲者，禁止飲酒｜本品牌不販賣酒予未滿十八歲者｜飲酒過量有害健康
+</div>
 
 </body>
 </html>
